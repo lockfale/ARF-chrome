@@ -1,0 +1,27 @@
+body {
+  padding: 5px;
+  width: 400px;
+}
+
+section {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+section input[type=checkbox] {
+  margin-right: 10px;
+}
+
+section span {
+  display: block;
+}
+
+section span.lastChecked {
+  margin-bottom: 15px;
+}
+
+section input.checkForUpdates {
+  display: block;
+  margin-top: 10px;
+}
