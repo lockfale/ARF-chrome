@@ -7,14 +7,17 @@
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
   },
+  "omnibox": { "keyword" : "arf" },
   "default_locale": "en",
   "background": {
     "scripts": [
       "bower_components/lodash/lodash.js",
       "bower_components/jquery/dist/jquery.js",
       "bower_components/q/q.js",
+      "bower_components/fuse.js/src/fuse.min.js",
       "scripts/chromereload.js",
-      "scripts/background.js"
+      "scripts/background.js",
+      "scripts/omnibox.js"
     ]
   },
   "permissions": [
