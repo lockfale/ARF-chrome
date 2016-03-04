@@ -3,6 +3,9 @@
 const LATEST_VERSION_INFO_URL = 'http://evanbooth.com/arf/arf.json';
 const ARF_FOLDER_NAME = 'ARF';
 
+var linksArray = [];
+var idRef = {};
+
 chrome.runtime.onInstalled.addListener(details => {
   checkForUpdates();
 });
@@ -61,6 +64,7 @@ var checkForUpdates = function() {
   })
   .done(() => {
     chrome.storage.local.set({ 'lastChecked': new Date() / 1000 * 1000 });
+    updateLocals();
   });
 };
 
@@ -112,6 +116,16 @@ var getLocalVersion = function() {
 
   chrome.storage.local.get('version', values => {
     deferred.resolve(values.version);
+  });
+
+  return deferred.promise;
+};
+
+var getSubTreeQ = function(id) {
+  let deferred = Q.defer();
+
+  chrome.bookmarks.getSubTree(id, (nodes) => {
+    deferred.resolve(nodes);
   });
 
   return deferred.promise;
@@ -214,3 +228,23 @@ var bookmarkNameSortAlpha = function(a, b) {
     return 0;
   }
 };
+
+function updateLocals() {
+  getARFFolder()
+  .then((folder) => {
+    return getSubTreeQ(folder.id)
+      .then((nodes) => {
+        linksArray = getLinks([], nodes[0]);
+      });
+  });
+}
+
+function getLinks(links, b) {
+  idRef[b.id] = b;
+  if ((b.children || []).length) return _.reduce(b.children, getLinks, links);
+  if (typeof b.url !== 'undefined') {
+    links.push(b);
+    return links;
+  }
+  return links;
+}

@@ -5,7 +5,8 @@
   "dependencies": {
     "lodash": "^4.5.0",
     "jquery": "^2.2.0",
-    "q": "1.0.1"
+    "q": "1.0.1",
+    "fuse.js": "fuse#^2.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

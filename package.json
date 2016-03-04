@@ -37,7 +37,10 @@
       "chrome": true,
       "_": true,
       "$": true,
-      "Q": true
+      "Q": true,
+      "Fuse": true,
+      "linksArray": true,
+      "idRef": true
     },
     "rules": {
       "eol-last": 0,
